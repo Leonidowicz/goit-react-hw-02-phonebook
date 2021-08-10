@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { findAllInRenderedTree } from 'react-dom/test-utils';
 
 class ContactForm extends Component {
   state = {
@@ -12,6 +13,10 @@ class ContactForm extends Component {
       name: this.state.name,
       number: this.state.number,
     };
+    if (this.state.number === '') {
+      alert('phone number is required');
+      return;
+    }
     this.props.newContact(contact);
     this.setState({ name: '', number: '' });
   };
